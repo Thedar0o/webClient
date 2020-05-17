@@ -82,16 +82,38 @@ namespace WebApp.Controllers
         [HttpPost]
         public ActionResult AddUser(Account account)
         {
-            using(ContactDBEntities db = new ContactDBEntities())
+            using (ContactDBEntities db = new ContactDBEntities())
             {
-                if(db.Account.Any(x => x.Login == account.Login))
+                if (db.Account.Any(x => x.Login == account.Login))
                 {
                     ViewBag.DuplicateMessage = "Username already exist";
                     return View("AddUser");
                 }
                 account.Password = PasswordSecurity.PasswordStorage.CreateHash(account.Password);
+                account.ConfirmPassword = account.Password;
                 db.Account.Add(account);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                {
+                    Exception raise = dbEx;
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            string message = string.Format("{0}:{1}",
+                                validationErrors.Entry.Entity.ToString(),
+                                validationError.ErrorMessage);
+                            // raise a new exception nesting
+                            // the current instance as InnerException
+                            raise = new InvalidOperationException(message, raise);
+                        }
+                    }
+                    throw raise;
+                }
             }
             ModelState.Clear();
             ViewBag.SuccessMessage = "Reqistration Successful";

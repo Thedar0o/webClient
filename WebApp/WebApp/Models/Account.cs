@@ -20,13 +20,14 @@ namespace WebApp.Models
         [Required(ErrorMessage = "User login required")]
         public string Login { get; set; }
 
+      //  [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)\S{6,20}$", ErrorMessage = "Invalid password format, at least: 1 upper and lower case, 6 letters")]
         [Required(ErrorMessage = "User password required")]
         [DataType(DataType.Password)]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)\S{6,20}$", ErrorMessage = "Invalid password format, at least: 1 upper case, 6 letters, 1 special sign ")]
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
+       // [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)\S{6,20}$", ErrorMessage = "Invalid password format, at least: 1 upper and lower case, 6 letters")]
         [Compare("Password")]
+        [DataType(DataType.Password)]
         [DisplayName("Confirm Password")]
         public string ConfirmPassword { get; set; }
 
