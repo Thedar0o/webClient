@@ -1,0 +1,41 @@
+﻿@model WebApp.Models.Account
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login</h2>
+
+<body>
+    <div id="login-div">
+        @using (Html.BeginForm("VerifyAccount", "Account", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td style="text-decoration:underline">Use your credentials</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Login)</td>
+                    <td>@Html.EditorFor(model => model.Login)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Password)</td>
+                    <td>@Html.EditorFor(model => model.Password)</td>
+                </tr>
+                <tr>
+                    <td colspan="2"> <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="name" value="Login" /></td>
+                </tr>
+            </table>
+        }
+
+        Not have account yet?<a href="~/Account/AddUser" class="ui-button"> Register</a>
+
+    </div>
+</body>
+<div>
+    @Html.ActionLink("Home", "Index", "Home")
+</div>
