@@ -13,24 +13,20 @@ namespace WebApp.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    /// <summary>
+    /// Contacts model class
+    /// </summary>
     public partial class Contacts
     {
         public int Id { get; set; }
         public Nullable<int> CategoriesId { get; set; }
-      //  [Required(ErrorMessage = "User Name required")]
         public string Name { get; set; }
-      //  [Required(ErrorMessage = "User SecoundName required")]
         public string SecoundName { get; set; }
-       // [Required(ErrorMessage = "User Mail required")]
         [DataType(DataType.EmailAddress, ErrorMessage ="E-mail is not valid")]
         public string Email { get; set; }
-      //  [Required(ErrorMessage = "User Password required")]
-      //  [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)\S{6,20}$", ErrorMessage = "Invalid password format, at least: 1 upper and lower case, 6 letters")]
         public string Password { get; set; }
-       // [Required(ErrorMessage = "User PhoneNumber required")]
         [DataType(DataType.PhoneNumber)]
         public Nullable<long> PhoneNumber { get; set; }
-      //  [Required(ErrorMessage = "User BirthDare required")]
         [DataType(DataType.Date, ErrorMessage ="dd-mm-rrrr")]
         public Nullable<System.DateTime> BirthDate { get; set; }
     

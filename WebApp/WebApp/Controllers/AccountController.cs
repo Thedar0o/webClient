@@ -9,7 +9,7 @@ namespace WebApp.Controllers
 {
     public class AccountController : Controller
     {
-        // GET: Account
+
         [HttpGet]
         public ActionResult Login()
         {
@@ -55,21 +55,6 @@ namespace WebApp.Controllers
                     return View("Login", account);
                 }
             }
-            //using(ContactDBEntities db = new ContactDBEntities())
-            //{
-                //var userData = db.Account.FirstOrDefault(x => x.Login == account.Login && x.Password == account.Password);
-                //if(userData == null)
-                //{
-                //    account.LoginErrorMessage = "Wrong username/password";
-                //    return View("Login", account);
-                //}
-                //else
-                //{
-                //    Session["Id"] = userData.Id;
-                //    Session["userName"] = userData.Login;
-                //    return RedirectToAction("Index", "Home");
-                //}            
-            //return View();
         }
 
         [HttpGet]
@@ -107,8 +92,6 @@ namespace WebApp.Controllers
                             string message = string.Format("{0}:{1}",
                                 validationErrors.Entry.Entity.ToString(),
                                 validationError.ErrorMessage);
-                            // raise a new exception nesting
-                            // the current instance as InnerException
                             raise = new InvalidOperationException(message, raise);
                         }
                     }

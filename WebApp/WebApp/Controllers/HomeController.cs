@@ -7,6 +7,9 @@ using WebApp.Models;
 
 namespace WebApp.Controllers
 {
+    /// <summary>
+    /// Simple class to control navigation in home page
+    /// </summary>
     public class HomeController : Controller
     {
         ContactDBEntities db = new ContactDBEntities();
@@ -29,32 +32,5 @@ namespace WebApp.Controllers
             return View(contact.ToList());
         }
 
-        //public ActionResult Contacts()
-        //{
-        //    var contact = db.Contacts.ToList();
-        //    return View(contact);
-        //}
-
-        //public JsonResult GetContacts()
-        //{
-        //    var cont = db.Contacts.ToArray();
-        //    List<Contacts> listcont = new List<Contacts>();
-        //    foreach (var item in cont)
-        //    {
-        //        listcont.Add(new Contacts
-        //        {
-        //            Id = item.Id,
-        //            Name = item.Name,
-        //            SecoundName = item.SecoundName,
-        //            Email = item.Email,
-        //            Password = item.Password,
-        //            CategoriesId = item.CategoriesId,
-        //            PhoneNumber = item.PhoneNumber,
-        //            BirthDate = item.BirthDate,
-
-        //        });
-        //    }
-        //    return Json(listcont, JsonRequestBehavior.AllowGet);
-        //}
     }
 }

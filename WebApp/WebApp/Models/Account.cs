@@ -14,6 +14,10 @@ namespace WebApp.Models
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
+    /// <summary>
+    /// Partial class that has account information with getters and setters
+    /// it specific which parameters are required while creating account
+    /// </summary>
     public partial class Account
     {
         public int Id { get; set; }

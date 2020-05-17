@@ -12,6 +12,9 @@ namespace WebApp.Models
     using System;
     using System.Collections.Generic;
     
+    /// <summary>
+    /// Categories model class
+    /// </summary>
     public partial class Categories
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
