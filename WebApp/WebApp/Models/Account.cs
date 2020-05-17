@@ -11,24 +11,12 @@ namespace WebApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Account
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "User login required")]
         public string Login { get; set; }
-
-        [Required(ErrorMessage = "User password required")]
-        [DataType(DataType.Password)]
         public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [Compare("Password")]
-        [DisplayName("Confirm Password")]
-        public string ConfirmPassword { get; set; }
-
-        public string LoginErrorMessage { get; set; }
+        public string LoginErrorMessage { get; internal set; }
     }
 }

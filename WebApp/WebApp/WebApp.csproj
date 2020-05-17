@@ -222,6 +222,9 @@
     <Content Include="Views\Contact\Contacts.cshtml" />
     <Content Include="Views\Contact\ContactsDetails.cshtml" />
     <Content Include="Views\Contact\Details.cshtml" />
+    <Content Include="Views\Contact\Create.cshtml" />
+    <Content Include="Views\Contact\Delete.cshtml" />
+    <Content Include="Views\Contact\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
