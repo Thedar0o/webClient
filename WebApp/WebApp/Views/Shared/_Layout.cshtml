@@ -1,5 +1,4 @@
-﻿@model WebApp.Models.Account
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -22,9 +21,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Strona główna", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Informacje", "About", "Home")</li>
-                    <li>@Html.ActionLink("Kontakty", "ContactsList", "Contact")</li>
+                    <li>@Html.ActionLink("Strona główna", "Index", "Home")</li>                    
+                    <li>@Html.ActionLink("Kontakty", "Contacts", "Contact")</li>
                     <li>@Html.ActionLink("Login", "Login", "Account")</li>
                 </ul>
             </div>
@@ -34,7 +32,12 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year</p>
+            @if (Session["userName"] == null)
+            {
+                Session["userName"] = "Guest";
+            }
+            
+            <p>&copy; @DateTime.Now.Year Logged as @Session["userName"].ToString()</p>
         </footer>
     </div>
 

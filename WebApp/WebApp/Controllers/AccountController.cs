@@ -16,6 +16,13 @@ namespace WebApp.Controllers
             return View();
         }
 
+        public ActionResult LogOut()
+        {
+            int userID = (int)Session["userId"];
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpPost]
         public ActionResult VerifyAccount(Account account)
         {
@@ -30,6 +37,7 @@ namespace WebApp.Controllers
                 else
                 {
                     Session["Id"] = userData.Id;
+                    Session["userName"] = userData.Login;
                     return RedirectToAction("Index", "Home");
                 }
             }

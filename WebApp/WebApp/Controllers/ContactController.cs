@@ -15,7 +15,7 @@ namespace WebApp.Controllers
         public ActionResult Contacts()
         {
             var contact = db.Contacts.ToList();
-            return View("ContactsList", contact);
+            return View("Contacts", contact);
         }
 
         public JsonResult GetContacts()
