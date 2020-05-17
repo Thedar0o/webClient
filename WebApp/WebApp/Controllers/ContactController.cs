@@ -18,6 +18,12 @@ namespace WebApp.Controllers
             return View("Contacts", contact);
         }
 
+        public ActionResult Details(int Id = 0)
+        {
+            var IdOfAccount = db.Contacts.Find(Id);
+            return View(IdOfAccount);
+        }
+
         public JsonResult GetContacts()
         {
             var cont = db.Contacts.ToArray();

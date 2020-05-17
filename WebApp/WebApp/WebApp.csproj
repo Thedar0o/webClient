@@ -220,6 +220,8 @@
     <Content Include="Views\Account\AddUser.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Contact\Contacts.cshtml" />
+    <Content Include="Views\Contact\ContactsDetails.cshtml" />
+    <Content Include="Views\Contact\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
