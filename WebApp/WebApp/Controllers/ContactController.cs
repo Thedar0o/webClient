@@ -38,9 +38,17 @@ namespace WebApp.Controllers
             {
                 using(var dbm = new ContactDBEntities())
                 {
+                    contacts.CategoriesId = 3;
                     var cat = dbm.Categories;
                     var id = cat.Where(x => x.Id == categories.Id).FirstOrDefault();
-                    contacts.CategoriesId = id.Id;
+                    try
+                    {
+                        contacts.CategoriesId = id.Id;
+                    }
+                    catch 
+                    {
+                        contacts.CategoriesId = 3;
+                    }                   
                     dbm.Contacts.Add(contacts);
                     dbm.SaveChanges();
                 }
@@ -65,8 +73,15 @@ namespace WebApp.Controllers
             try
             {
                 using(var dbm = new ContactDBEntities())
-                { 
-                    contacts.CategoriesId = int.Parse(Request.Form["CategoryName"]);
+                {
+                    try
+                    {
+                        contacts.CategoriesId = int.Parse(Request.Form["CategoryName"]);
+                    }
+                    catch (Exception)
+                    {
+                        contacts.CategoriesId = 3;
+                    }                  
                     dbm.Entry(contacts).State = EntityState.Modified;
                     dbm.SaveChanges();
                 }
