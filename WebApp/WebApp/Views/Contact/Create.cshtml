@@ -3,6 +3,10 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["Id"] == null)
+    {
+        Response.Redirect("~/Account/Login");
+    }
 }
 
 <h2>Create</h2>

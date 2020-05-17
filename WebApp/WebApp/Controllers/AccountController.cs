@@ -26,22 +26,50 @@ namespace WebApp.Controllers
         [HttpPost]
         public ActionResult VerifyAccount(Account account)
         {
-            using(ContactDBEntities db = new ContactDBEntities())
+            using (ContactDBEntities db = new ContactDBEntities())
             {
-                var userData = db.Account.FirstOrDefault(x => x.Login == account.Login && x.Password == account.Password);
-                if(userData == null)
+                if (account.Login != null && account.Password != null)
+                {
+                    var userData = db.Account.FirstOrDefault(x => x.Login == account.Login);
+                    if(userData == null)
+                    {
+                        account.LoginErrorMessage = "Wrong username/password";
+                        return View("Login", account);
+                    }
+                    bool res = PasswordSecurity.PasswordStorage.VerifyPassword(account.Password, userData.Password);
+                    if (res)
+                    {
+                        Session["Id"] = userData.Id;
+                        Session["userName"] = userData.Login;
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        account.LoginErrorMessage = "Wrong username/password";
+                        return View("Login", account);
+                    }
+                }
+                else
                 {
                     account.LoginErrorMessage = "Wrong username/password";
                     return View("Login", account);
                 }
-                else
-                {
-                    Session["Id"] = userData.Id;
-                    Session["userName"] = userData.Login;
-                    return RedirectToAction("Index", "Home");
-                }
             }
-           // return View();
+            //using(ContactDBEntities db = new ContactDBEntities())
+            //{
+                //var userData = db.Account.FirstOrDefault(x => x.Login == account.Login && x.Password == account.Password);
+                //if(userData == null)
+                //{
+                //    account.LoginErrorMessage = "Wrong username/password";
+                //    return View("Login", account);
+                //}
+                //else
+                //{
+                //    Session["Id"] = userData.Id;
+                //    Session["userName"] = userData.Login;
+                //    return RedirectToAction("Index", "Home");
+                //}            
+            //return View();
         }
 
         [HttpGet]
@@ -61,6 +89,7 @@ namespace WebApp.Controllers
                     ViewBag.DuplicateMessage = "Username already exist";
                     return View("AddUser");
                 }
+                account.Password = PasswordSecurity.PasswordStorage.CreateHash(account.Password);
                 db.Account.Add(account);
                 db.SaveChanges();
             }

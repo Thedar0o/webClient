@@ -12,7 +12,7 @@ namespace WebApp.Controllers
     {
        ContactDBEntities db = new ContactDBEntities();
        
-        // GET: Contact
+
         public ActionResult Contacts()
         {
             var contact = db.Contacts.ToList();
@@ -60,19 +60,12 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(Contacts contacts, Categories category)
         {
             try
             {
                 using(var dbm = new ContactDBEntities())
-                {
-                    //contacts.CategoriesId = id.Id;
-                    //var cat = dbm.Categories;
-                    //var idcat = cat.Where(x => x.Id == collection.Id).FirstOrDefault();
-                    //var pyć = contacts.Name;
-                    //var d = contacts.Id;
-                    //var yć = cat.;
+                { 
                     contacts.CategoriesId = int.Parse(Request.Form["CategoryName"]);
                     dbm.Entry(contacts).State = EntityState.Modified;
                     dbm.SaveChanges();
@@ -94,7 +87,6 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Delete(Contacts contacts)
         {
             try
@@ -104,8 +96,6 @@ namespace WebApp.Controllers
                     Contacts contact = dbm.Contacts.Where(x => x.Id == contacts.Id).FirstOrDefault();
                     var del = db.Contacts.Find(contacts.Id);
                     db.Entry(del).State = EntityState.Deleted;
-                    //dbm.Contacts.Remove(contact);
-                   // dbm.Contacts.Remove(del);
                     db.SaveChanges();
                     return RedirectToAction("Contacts");
                 }

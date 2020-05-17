@@ -3,13 +3,17 @@
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["Id"] == null)
+    {
+        Response.Redirect("~/Account/Login");
+    }
 }
 
 <h2>Edit</h2>
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+   // @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         <h4>Contacts</h4>

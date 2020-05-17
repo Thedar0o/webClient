@@ -159,6 +159,7 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\PasswordStorage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-darky.css" />
